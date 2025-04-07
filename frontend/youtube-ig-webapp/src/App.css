@@ -1,0 +1,305 @@
+/* src/App.css */
+
+/* --- Base & Variables --- */
+:root {
+  --primary-color: #0d6efd; /* Bootstrap blue - good contrast */
+  --primary-hover: #0a58ca;
+  --secondary-color: #6c757d;
+  --background-color: #eef2f7; /* Slightly darker, cooler background */
+  --card-background: #ffffff;
+  --text-color: #212529; /* Dark grey/black for default text */
+  --heading-color: #343a40; /* Slightly softer black for headings */
+  --muted-text-color: #6c757d; /* Ensure this has contrast or use sparingly */
+  --placeholder-color: #888; /* Visible placeholder color */
+  --border-color: #dee2e6;
+  --input-border-color: #ced4da;
+  --error-bg: #f8d7da;
+  --error-border: #f5c6cb;
+  --error-text: #721c24;
+  --success-bg: #d1e7dd;
+  --success-border: #badbcc;
+  --success-text: #0f5132;
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --border-radius: 0.375rem; /* 6px */
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --focus-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25); /* Blue focus ring */
+}
+
+/* Apply box-sizing globally */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%; /* Ensure html takes full height */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack elements vertically */
+  align-items: center; /* Center horizontally */
+  justify-content: center; /* Center vertically */
+  min-height: 100%; /* Ensure body takes at least full viewport height */
+  padding: 20px 0; /* Add some padding top/bottom */
+}
+
+/* --- Layout & Container --- */
+.container {
+  width: 100%; /* Take full width available */
+  max-width: 760px; /* Limit maximum width */
+  /* Removed margin: auto - body flexbox handles centering */
+  padding: 15px; /* Padding for smaller screens */
+  display: flex;
+  flex-direction: column;
+  gap: 30px; /* Increased space between cards */
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 30px 35px; /* Increased padding */
+  border: 1px solid var(--border-color);
+}
+
+.app-header, .app-footer {
+    text-align: center;
+    width: 100%;
+    max-width: 760px; /* Match container width */
+    padding: 0 15px; /* Match container padding */
+}
+
+.app-header h1 {
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+    font-size: 2.2rem; /* Larger title */
+    font-weight: 600;
+    display: flex; /* Align icon nicely */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.app-header h1 .arrow-icon {
+    color: var(--primary-color); /* Color the arrow */
+    font-size: 1.8rem; /* Adjust icon size if needed */
+}
+
+.app-header p {
+    color: var(--muted-text-color); /* Muted text, check contrast */
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 30px; /* Space below description */
+}
+
+.app-footer {
+    margin-top: 25px;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+}
+
+/* --- Forms & Inputs --- */
+h2 {
+  margin-top: 0;
+  margin-bottom: 25px; /* Increased space */
+  font-weight: 600;
+  font-size: 1.4rem; /* Slightly larger step titles */
+  color: var(--heading-color);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #495057;
+}
+
+input[type="url"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid var(--input-border-color); /* Specific input border color */
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  background-color: var(--card-background); /* Match card background */
+  color: var(--text-color); /* Explicitly set input text color */
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* --- VISIBILITY FIX: Placeholder Text Color --- */
+input[type="url"]::placeholder,
+textarea::placeholder {
+  color: var(--placeholder-color);
+  opacity: 1; /* Override browser defaults */
+}
+
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--primary-color);
+  box-shadow: var(--focus-shadow);
+  outline: none;
+}
+
+input[type="url"]:disabled,
+select:disabled,
+textarea:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.form-row .form-group {
+    flex: 1;
+    min-width: 200px;
+}
+
+/* --- Buttons --- */
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 12px 24px; /* Slightly more padding */
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+  min-width: 180px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Add subtle shadow to buttons */
+}
+
+button:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+button:disabled {
+  background-color: var(--secondary-color);
+  opacity: 0.65;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+button.copy-button {
+    background-color: #198754; /* Bootstrap success green */
+    margin-top: 15px;
+    min-width: 150px;
+}
+button.copy-button:hover:not(:disabled) {
+    background-color: #157347;
+}
+
+
+/* --- Output Areas --- */
+.output-area {
+    position: relative;
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    min-height: 150px;
+    overflow: hidden; /* Keep loading overlay contained */
+}
+
+.output-area textarea {
+  background-color: transparent;
+  border: none;
+  resize: vertical;
+  box-shadow: none;
+  padding: 15px;
+  color: var(--text-color); /* Ensure dark text color */
+}
+.output-area textarea:focus {
+    box-shadow: none;
+    border-color: transparent;
+}
+
+.transcript-area textarea {
+  font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace; /* Better monospace stack */
+  font-size: 0.9rem; /* Slightly smaller for monospace */
+  line-height: 1.7; /* More line spacing */
+}
+
+.caption-area textarea {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* --- Loading & Error States --- */
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly more opaque */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    z-index: 10;
+    padding: 20px; /* Add padding */
+    text-align: center;
+}
+.loading-overlay p {
+    margin-top: 15px;
+    font-weight: 500;
+    color: var(--muted-text-color);
+}
+
+/* Spinner Animation */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+}
+/* Spinner inside loading overlay */
+.loading-overlay .spinner {
+    border: 4px solid rgba(13, 110, 253, 0.2); /* Use primary color */
+    border-top-color: var(--primary-color);
+    width: 40px;
+    height: 40px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-banner {
+  padding: 15px 20px;
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error-text);
+  border-radius: var(--border-radius);
+  /* Removed margin-bottom, using gap on container now */
+  width: 100%; /* Make banner full width of container */
+  max-width: 760px; /* Match container width */
+  margin: 0 auto 20px auto; /* Center banner if needed, add bottom margin */
+}
+
+.error-banner strong {
+    margin-right: 5px;
+}
