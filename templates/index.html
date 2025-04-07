@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Transcript Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            min-height: 100vh;
+            padding: 40px;
+            color: #333;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            min-width: 300px;
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        h1 {
+            font-size: 2rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: #34495e;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        button {
+            padding: 12px 20px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #2980b9;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        #transcript {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        th {
+            background: #ecf0f1;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+        tr:hover {
+            background: #f9f9f9;
+        }
+        .alert-danger {
+            background: #e74c3c;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card transcript-container">
+            <h1>YouTube Transcript Generator</h1>
+            <div class="input-group">
+                <input type="text" id="youtube_link" placeholder="Enter YouTube Link">
+                <button onclick="generateTranscript()">Generate</button>
+            </div>
+            <div id="transcript"></div>
+            <div class="input-group">
+                <button class="btn btn-success" onclick="downloadTranscript(transcriptData, 'srt')">Download SRT</button>
+                <button class="btn btn-success" onclick="downloadTranscript(transcriptData, 'txt')">Download TXT</button>
+            </div>
+        </div>
+        <div class="card video-container">
+            <h2>Video Preview</h2>
+            <iframe id="youtubePlayer" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        let transcriptData = []; // Global variable to store transcript data
+
+        function generateTranscript() {
+            const youtubeLink = document.getElementById('youtube_link').value;
+            console.log("YouTube Link:", youtubeLink);
+
+            // Extract video ID from YouTube link and embed it
+            const videoId = extractVideoId(youtubeLink);
+            console.log("Extracted Video ID:", videoId);
+            if (videoId) {
+                document.getElementById('youtubePlayer').src = `https://www.youtube.com/embed/${videoId}`;
+            } else {
+                console.error("Invalid YouTube link");
+            }
+
+            // Fetch transcript from backend
+            fetch('/generate_transcript', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `youtube_link=${encodeURIComponent(youtubeLink)}`
+            })
+            .then(response => {
+                console.log("Response Status:", response.status);
+                if (!response.ok) throw new Error('Server error');
+                return response.json();
+            })
+            .then(data => {
+                console.log("Transcript Data:", data);
+                displayTranscript(data.transcript);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('transcript').innerHTML = '<div class="alert alert-danger">Error: Could not generate transcript.</div>';
+            });
+        }
+
+        function extractVideoId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            const match = url.match(regExp);
+            return (match && match[2].length === 11) ? match[2] : null;
+        }
+
+        function displayTranscript(transcript) {
+            transcriptData = transcript; // Store the transcript data for download
+            const transcriptContainer = document.getElementById('transcript');
+            transcriptContainer.innerHTML = '';
+
+            const table = document.createElement('table');
+            const headerRow = document.createElement('tr');
+            const timestampHeader = document.createElement('th');
+            const subtitleHeader = document.createElement('th');
+
+            timestampHeader.innerText = 'Timestamp';
+            subtitleHeader.innerText = 'Subtitle';
+            headerRow.appendChild(timestampHeader);
+            headerRow.appendChild(subtitleHeader);
+            table.appendChild(headerRow);
+
+            transcript.forEach(item => {
+                const row = document.createElement('tr');
+                const timestampCell = document.createElement('td');
+                const subtitleCell = document.createElement('td');
+
+                timestampCell.innerText = item.timestamp;
+                subtitleCell.innerText = item.subtitle;
+
+                row.appendChild(timestampCell);
+                row.appendChild(subtitleCell);
+                table.appendChild(row);
+            });
+
+            transcriptContainer.appendChild(table);
+        }
+
+        function downloadTranscript(transcript, format) {
+            let content = '';
+            
+            if (format === 'srt') {
+                transcript.forEach((item, index) => {
+                    const startTime = formatTimestamp(item.timestamp);
+                    const endTime = formatTimestamp(calculateEndTime(item.timestamp, 5)); // Assuming each subtitle lasts 5 seconds
+                    content += `${index + 1}\n`; // SRT index
+                    content += `${startTime} --> ${endTime}\n`; // Start and end timestamps
+                    content += `${item.subtitle}\n\n`; // Subtitle text
+                });
+            } else if (format === 'txt') {
+                transcript.forEach(item => {
+                    content += `${item.timestamp} - ${item.subtitle}\n`; // Timestamp and subtitle
+                });
+            }
+
+            // Create a blob and download it
+            const blob = new Blob([content], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `transcript.${format}`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url); // Clean up
+        }
+
+        function formatTimestamp(timestamp) {
+            // Assuming timestamp is in the format "HH:MM:SS.ms"
+            const parts = timestamp.split(':');
+            const seconds = parseFloat(parts[2]);
+            const milliseconds = Math.round((seconds % 1) * 1000);
+            const formattedSeconds = Math.floor(seconds);
+            return `${parts[0]}:${parts[1]}:${String(formattedSeconds).padStart(2, '0')},${String(milliseconds).padStart(3, '0')}`;
+        }
+
+        function calculateEndTime(startTimestamp, duration) {
+            const parts = startTimestamp.split(':');
+            let totalSeconds = parseInt(parts[0]) * 3600 + parseInt(parts[1]) * 60 + parseFloat(parts[2]);
+            totalSeconds += duration; // Add duration in seconds
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = (totalSeconds % 60).toFixed(3);
+            return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(5, '0')}`;
+        }
+    </script>
+</body>
+</html>
