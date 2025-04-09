@@ -12,7 +12,35 @@ import traceback
 from datetime import datetime, timedelta
 import sys
 from io import StringIO
+import logging # Add this import at the top
+import sys     # Add this import at the top
 
+# --- Flask App Initialization ---
+app = Flask(__name__)
+CORS(app) # Keep CORS
+
+# --- ADD THIS LOGGING ---
+# Configure basic logging to go to stderr (visible in Vercel logs)
+app.logger.setLevel(logging.DEBUG) 
+handler = logging.StreamHandler(sys.stderr)
+handler.setFormatter(logging.Formatter(
+    '%(asctime)s %(levelname)s: %(message)s '
+    '[in %(pathname)s:%(lineno)d]'
+))
+app.logger.addHandler(handler)
+
+@app.before_request
+def log_request_info():
+    """Log incoming request details before routing."""
+    app.logger.debug('*** Request Received ***')
+    app.logger.debug('Path: %s', request.path)
+    app.logger.debug('Method: %s', request.method)
+    app.logger.debug('Headers: %s', request.headers)
+    app.logger.debug('Base URL: %s', request.base_url)
+    app.logger.debug('URL Root: %s', request.url_root)
+    app.logger.debug('Script Root: %s', request.script_root)
+    app.logger.debug('Rule: %s', request.url_rule) # Might be None here
+    app.logger.debug('************************')
 # --- Configuration ---
 load_dotenv()
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
@@ -21,9 +49,6 @@ if not GEMINI_API_KEY:
     print("Error: Gemini API key not found. Make sure it's set in your .env file.")
     exit()
 
-# --- Flask App Initialization ---
-app = Flask(__name__)
-CORS(app)
 
 # --- Data Models ---
 class Transcript(TypedDict):
