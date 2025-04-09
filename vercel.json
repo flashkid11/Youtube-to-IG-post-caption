@@ -1,30 +1,29 @@
-{
-    "version": 2,
-    "builds": [
-      {
-        "src": "api/index.py",
-        "use": "@vercel/python"
-      },
-      {
-        "src": "frontend/youtube-ig-webapp/package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist"
-        }
+// Keep the "builds" section as it was (it worked)
+"builds": [
+    {
+      "src": "api/index.py",
+      "use": "@vercel/python"
+    },
+    {
+      "src": "frontend/youtube-ig-webapp/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist" // This tells the builder where output is relative to its context
       }
-    ],
-    "routes": [
-    {
-        "src": "/api/(.*)",
-        "dest": "/api/index.py"
-    },
-    {
-        "src": "/assets/(.*)",
-        "dest": "/frontend/youtube-ig-webapp/dist/assets/$1"
-    },
-    {
-        "src": "/(.*)",
-        "dest": "/frontend/youtube-ig-webapp/dist/index.html"
     }
-    ]
+  ],
+// CORRECTED routes section:
+"routes": [
+  {
+    "src": "/api/(.*)",
+    "dest": "/api/index.py" // API calls go to the Python function
+  },
+  {
+    "src": "/assets/(.*)",
+    "dest": "/frontend/youtube-ig-webapp/assets/$1" // Serve assets from the correct output path
+  },
+  {
+    "src": "/(.*)",
+    "dest": "/frontend/youtube-ig-webapp/index.html" // Fallback to the correct index.html output path
   }
+]
