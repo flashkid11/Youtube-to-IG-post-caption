@@ -9,9 +9,7 @@
         "src": "frontend/youtube-ig-webapp/package.json",
         "use": "@vercel/static-build",
         "config": {
-          "distDir": "frontend/youtube-ig-webapp/dist",
-          "installCommand": "cd frontend/youtube-ig-webapp && npm install",
-          "buildCommand": "cd frontend/youtube-ig-webapp && npm run build"
+          "distDir": "dist"
         }
       }
     ],
@@ -25,7 +23,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/frontend/youtube-ig-webapp/dist/index.html"
+        "dest": "/index.html"
       }
     ]
   }
