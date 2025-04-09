@@ -1,0 +1,31 @@
+{
+    "version": 2,
+    "builds": [
+      {
+        "src": "api/index.py",
+        "use": "@vercel/python"
+      },
+      {
+        "src": "frontend/youtube-ig-webapp/package.json",
+        "use": "@vercel/static-build",
+        "config": {
+          "distDir": "frontend/youtube-ig-webapp/dist",
+          "installCommand": "cd frontend/youtube-ig-webapp && npm install",
+          "buildCommand": "cd frontend/youtube-ig-webapp && npm run build"
+        }
+      }
+    ],
+    "routes": [
+      {
+        "src": "/api/(.*)",
+        "dest": "/api/index.py"
+      },
+      {
+        "handle": "filesystem"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/frontend/youtube-ig-webapp/dist/index.html"
+      }
+    ]
+  }
