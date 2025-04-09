@@ -7,7 +7,7 @@ import './App.css';
 // const API_BASE_URL = 'http://localhost:5000';
 
 // For production, use:
-const API_BASE_URL = '/api/';
+const API_BASE_URL = '/api';
 
 function Spinner() {
   return <div className="spinner"></div>;
