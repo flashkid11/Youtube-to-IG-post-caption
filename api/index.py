@@ -1,5 +1,7 @@
 from .app_logic import app
 
-if __name__ == "__main__":
-    app.run(debug=True)
+
+# vercel dont need this
+# if __name__ == "__main__":
+#     app.run(debug=True)
 
