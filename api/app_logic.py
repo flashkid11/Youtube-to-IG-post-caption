@@ -265,6 +265,12 @@ def generate_multiple_captions(transcript_data, style, language, num_captions=3,
              raise RuntimeError(f"Gemini API call failed for captions: {e}")
 
 # --- Flask Routes ---
+# Add this ABOVE your existing routes for testing
+@app.route('/')
+def home_test():
+    return "Flask app is running!"
+
+
 @app.route('/generate_transcript', methods=['POST'])
 def generate_transcript_route():
     """Endpoint for transcript generation with SRT download."""
