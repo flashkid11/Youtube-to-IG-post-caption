@@ -291,12 +291,12 @@ def generate_multiple_captions(transcript_data, style, language, num_captions=3,
 
 # --- Flask Routes ---
 # Add this ABOVE your existing routes for testing
-@app.route('/')
+@app.route('/api/')
 def home_test():
     return "Flask app is running!"
 
 
-@app.route('/generate_transcript', methods=['POST'])
+@app.route('/api/generate_transcript', methods=['POST'])
 def generate_transcript_route():
     """Endpoint for transcript generation with SRT download."""
     if not request.is_json:
@@ -339,7 +339,7 @@ def generate_transcript_route():
         return jsonify({'error': f"Unexpected Server Error: {e}"}), 500
 
 
-@app.route('/generate_caption', methods=['POST'])
+@app.route('/api/generate_caption', methods=['POST'])
 def generate_caption_route():
     """ Endpoint for generating multiple captions. """
     if not request.is_json: return jsonify({'error': 'Request must be JSON'}), 415
