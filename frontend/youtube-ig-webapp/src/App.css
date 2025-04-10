@@ -657,16 +657,18 @@ button.copy-button:disabled {
 .captions-list::-webkit-scrollbar-thumb:hover { background-color: var(--scrollbar-thumb-hover-bg); }
 
 
+/* --- Styles for Caption Option Responsiveness --- */
 .caption-option {
   border: 2px solid var(--border-color);
   border-radius: var(--border-radius);
   background-color: var(--input-background);
   transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
-  position: relative;
+  position: relative; /* Keep relative positioning for the number */
   overflow: hidden;
-  /* --- ADD: Let height be determined by content --- */
+  /* --- Ensure height is automatic --- */
   height: auto;
+  display: block; /* Make the option a block container */
 }
 .caption-option:hover {
   border-color: var(--primary-color);
@@ -677,27 +679,29 @@ button.copy-button:disabled {
   background-color: rgba(79, 209, 197, 0.1);
   box-shadow: 0 0 18px rgba(79, 209, 197, 0.15);
 }
+
 .caption-option label {
-  display: flex;
-  /* --- CHANGED: align-items to stretch for full height --- */
-  align-items: stretch; /* Make children stretch vertically */
-  padding: 0; /* Remove padding from label, apply to children */
-  /* padding: 25px 25px 25px 70px; */ /* Original padding */
+  /* --- Make label a block that contains the text flow --- */
+  display: block; /* Change from flex */
+  /* --- Padding now accounts for the absolutely positioned number --- */
+  padding: 25px 25px 25px 70px;
   margin-bottom: 0;
   cursor: pointer;
   font-weight: 400;
   font-size: 1.05rem;
   color: var(--text-color);
   width: 100%;
-  position: relative;
-  min-height: 70px; /* Ensure a minimum height even for short text */
+  position: relative; /* Keep relative for potential future use, but not strictly needed now */
+  min-height: 70px; /* Ensure a minimum height */
+  height: auto; /* Explicitly allow auto height */
 }
+
 .caption-variation-number {
-  position: absolute; /* Keep absolute positioning relative to label */
+  position: absolute;
   left: 0;
   top: 0;
   bottom: 0; /* Stretch full height */
-  width: 50px;
+  width: 50px; /* Keep width */
   display: flex;
   align-items: center; /* Center number vertically */
   justify-content: center;
@@ -707,34 +711,38 @@ button.copy-button:disabled {
   font-size: 1.1rem;
   border-right: 1px solid var(--border-color);
   transition: background-color 0.2s ease, color 0.2s ease;
+  /* --- Add border-radius to match parent --- */
+  border-top-left-radius: calc(var(--border-radius) - 2px); /* Adjust for border */
+  border-bottom-left-radius: calc(var(--border-radius) - 2px);
 }
+
 .caption-option.selected .caption-variation-number {
   background-color: var(--primary-color);
   color: var(--input-background);
   border-right-color: var(--primary-color);
 }
+
 .caption-option input[type="radio"] {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-/* Removed .caption-text-wrapper, apply padding to pre */
 .caption-text { /* This is the <pre> tag */
   white-space: pre-wrap; /* Allow wrapping */
   word-wrap: break-word; /* Break long words */
-  margin: 0;
-  /* --- ADD: Padding inside the <pre> --- */
-  padding: 25px 25px 25px 70px; /* Re-apply padding here (left padding accounts for number) */
+  margin: 0; /* Reset default margin */
+  padding: 0; /* Reset padding, parent label handles it now */
   font-family: inherit;
   font-size: 1.05rem;
   line-height: 1.8;
   color: inherit;
-  flex-grow: 1; /* Allow pre to take space */
-  /* --- ADD: Ensure block display and min-height if needed --- */
+  /* --- Remove flex properties, let it behave like normal block inside label --- */
   display: block;
-  min-height: 1em; /* Ensure it has some height even if empty */
+  min-height: 0; /* Good practice for flex/block sizing */
 }
+/* --- End Caption Option Responsiveness Styles --- */
+
 
 /* --- Loading Overlay --- */
 .loading-overlay {
@@ -829,9 +837,10 @@ button.copy-button:disabled {
   .form-row { flex-direction: column; gap: 0; }
   .form-row .form-group { min-width: 100%; margin-bottom: 25px; }
   .error-banner { padding: 15px; font-size: 0.95rem; }
-  .caption-option label { padding: 0; } /* Remove padding from label */
+  /* Adjust responsive caption option styles */
+  .caption-option label { padding: 20px 15px 20px 60px; } /* Adjust padding */
   .caption-variation-number { width: 42px; font-size: 1rem; }
-  .caption-text { padding: 20px 15px 20px 60px; font-size: 1rem; } /* Adjust padding */
+  .caption-text { font-size: 1rem; }
 }
 
 /* Utility class for screen readers only */
