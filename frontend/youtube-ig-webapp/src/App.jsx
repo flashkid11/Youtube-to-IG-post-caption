@@ -170,7 +170,7 @@ function App() {
   ];
   const whatsappNumber = "YOUR_WHATSAPP_NUMBER_HERE"; // Keep placeholder or update
   const whatsappLink = `https://wa.me/${whatsappNumber}`;
-  const captionCountOptions = [1, 3, 5];
+  const captionCountOptions = [1, 2, 3];
 
   // --- Callbacks ---
   const formatTranscriptForDisplay = useCallback((data) => {
