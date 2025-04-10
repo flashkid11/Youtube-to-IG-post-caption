@@ -1,5 +1,13 @@
 {
     "appTitle": "DotAI - YouTube to IG Caption",
+    "intro_card_heading": "Welcome to DotAI YouTube to IG Caption Generator!",
+    "intro_card_purpose": "This application helps you generate engaging Instagram captions and transcripts from YouTube videos using AI.",
+    "intro_card_usage_title": "How to Use:",
+    "intro_card_usage_step1": "1. Paste a YouTube video URL below.",
+    "intro_card_usage_step2": "2. Click \"Generate Transcript\" to get the video text.",
+    "intro_card_usage_step3": "3. (Optional) Download the transcript as a .txt or .srt file.",
+    "intro_card_usage_step4": "4. Select your desired language and style, then click \"Generate Captions\".",
+    "intro_card_usage_step5": "5. Choose your favorite caption from the generated options and copy it!",
     "step1_heading": "Enter YouTube URL",
     "youtube_url_label": "YouTube Video URL",
     "youtube_url_placeholder": "Paste YouTube link here...",

@@ -1,5 +1,13 @@
 {
     "appTitle": "DotAI - YouTube 轉 IG 字幕",
+    "intro_card_heading": "歡迎使用 DotAI YouTube 轉 IG 字幕生成器！",
+    "intro_card_purpose": "此應用程式利用 AI 幫助您從 YouTube 影片生成吸引人的 Instagram 字幕和文字稿。",
+    "intro_card_usage_title": "如何使用：",
+    "intro_card_usage_step1": "1. 在下方貼上 YouTube 影片網址。",
+    "intro_card_usage_step2": "2. 點擊「生成文字稿」以獲取影片文字。",
+    "intro_card_usage_step3": "3. （可選）將文字稿下載為 .txt 或 .srt 檔案。",
+    "intro_card_usage_step4": "4. 選擇您想要的語言和風格，然後點擊「生成字幕」。",
+    "intro_card_usage_step5": "5. 從生成的選項中選擇您最喜歡的字幕並複製它！",
     "step1_heading": "輸入 YouTube 網址",
     "youtube_url_label": "YouTube 影片網址",
     "youtube_url_placeholder": "在此貼上 YouTube 連結...",

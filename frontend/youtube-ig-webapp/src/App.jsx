@@ -28,9 +28,6 @@ function downloadFile(filename, content, mimeType) {
 
 // --- Helper Function to Format SRT (no changes needed, assuming console.warn is ok) ---
 function formatTranscriptToSRT(transcriptData) {
-    // ... (keep existing implementation) ...
-    // Consider translating console.warn messages if needed for developers
-    // using t() from props or context if this becomes a separate component
       let srtContent = '';
   let sequence = 1;
 
@@ -112,30 +109,30 @@ function formatTranscriptToSRT(transcriptData) {
 
 // --- Language Switcher Component ---
 function LanguageSwitcher() {
-  const { t, i18n } = useTranslation(); // Get both t and i18n instance
+    const { t, i18n } = useTranslation(); // Get both t and i18n instance
 
-  // Determine the language code to switch TO
-  const targetLang = i18n.language.startsWith('zh') ? 'en' : 'zh-Hant';
+    // Determine the language code to switch TO
+    const targetLang = i18n.language.startsWith('zh') ? 'en' : 'zh-Hant';
 
-  // Determine the translation key for the target language's display name
-  const targetLangDisplayKey = targetLang === 'en' ? 'current_language_en' : 'current_language_zh_hant';
+    // Determine the translation key for the target language's display name
+    const targetLangDisplayKey = targetLang === 'en' ? 'current_language_en' : 'current_language_zh_hant';
 
-  const changeLanguage = () => {
-    i18n.changeLanguage(targetLang);
-  };
+    const changeLanguage = () => {
+      i18n.changeLanguage(targetLang);
+    };
 
-  return (
-      <div className="language-switcher">
-           <button
-              onClick={changeLanguage}
-              // Use t() for the title attribute, providing the target language display name
-              title={t('switch_language_title', { language: t(targetLangDisplayKey) })}
-          >
-              {/* Use t() for the button text */}
-              {t(targetLangDisplayKey)}
-          </button>
-      </div>
-  );
+    return (
+        <div className="language-switcher">
+             <button
+                onClick={changeLanguage}
+                // Use t() for the title attribute, providing the target language display name
+                title={t('switch_language_title', { language: t(targetLangDisplayKey) })}
+            >
+                {/* Use t() for the button text */}
+                {t(targetLangDisplayKey)}
+            </button>
+        </div>
+    );
 }
 
 
@@ -366,6 +363,22 @@ function App() {
           </div>
         )}
 
+        {/* --- NEW: Intro Card --- */}
+        <div className="card card-intro">
+          <h2>{t('intro_card_heading')}</h2>
+          <p>{t('intro_card_purpose')}</p>
+          <h3>{t('intro_card_usage_title')}</h3>
+          <ol className="usage-steps">
+            <li>{t('intro_card_usage_step1')}</li>
+            <li>{t('intro_card_usage_step2')}</li>
+            <li>{t('intro_card_usage_step3')}</li>
+            <li>{t('intro_card_usage_step4')}</li>
+            <li>{t('intro_card_usage_step5')}</li>
+          </ol>
+        </div>
+        {/* --- End Intro Card --- */}
+
+
         {/* --- Step 1 Form --- */}
         <form onSubmit={handleGenerateTranscript} className="card card-step-1">
           <h2><span className="step-number">1</span> {t('step1_heading')}</h2>
@@ -404,10 +417,10 @@ function App() {
             </div>
             <div className="download-buttons-container">
               <button onClick={handleDownloadTxt} disabled={isLoading} className="download-button txt-button">
-                <span role="img" aria-hidden="true"></span> {t('download_txt_button')}
+                <span role="img" aria-hidden="true">💾</span> {t('download_txt_button')}
               </button>
               <button onClick={handleDownloadSrt} disabled={isLoading} className="download-button srt-button">
-                <span role="img" aria-hidden="true"></span> {t('download_srt_button')}
+                <span role="img" aria-hidden="true">🎬</span> {t('download_srt_button')}
               </button>
             </div>
           </div>
@@ -416,14 +429,14 @@ function App() {
         {/* --- Prompt Engineering Showcase --- */}
          {transcriptData && !isLoading && (
             <div className="card prompt-elements-card">
-                <h2><span role="img" aria-hidden="true"></span> {t('caption_factors_heading')}</h2>
+                <h2><span role="img" aria-hidden="true">💡</span> {t('caption_factors_heading')}</h2>
                 <p>{t('caption_factors_intro')}</p>
                 <ul>
                     {/* Note: We use apiLanguage state for the value sent to backend */}
                     <li><strong>{t('factor_language')}:</strong> {languages.find(l => l.value === apiLanguage)?.translationKey ? t(languages.find(l => l.value === apiLanguage)?.translationKey) : apiLanguage}</li>
                     <li><strong>{t('factor_style')}:</strong> {captionStyles.find(s => s.value === selectedStyle)?.translationKey ? t(captionStyles.find(s => s.value === selectedStyle)?.translationKey) : selectedStyle}</li>
-                    <li><strong>{t('factor_number')}:</strong> {t('factor_number')}: {numCaptions} variations.</li>
-                    <li><strong>{t('factor_content')}:</strong> {t('factor_content')}: Derived from the transcript above.</li>
+                    <li><strong>{t('factor_number')}:</strong> {numCaptions}</li>
+                    <li><strong>{t('factor_content')}:</strong> {t('factor_content')}</li>
                 </ul>
                 <div className="prompt-engineering-showcase">
                     <h3><span role="img" aria-hidden="true">🛠️</span> {t('prompt_showcase_heading')}</h3>
@@ -535,7 +548,7 @@ function App() {
                   title={t('copy_button_title')}
                   aria-label={t('copy_button_title')}
                 >
-                  <span role="img" aria-hidden="true"></span> {t('copy_button')}
+                  <span role="img" aria-hidden="true">📋</span> {t('copy_button')}
                 </button>
                 {copySuccess && <span className="copy-feedback" role="status">{t('copy_success_message')}</span>}
               </div>
@@ -552,8 +565,9 @@ function App() {
         <div className="footer-content">
           <img src="/logo.png" alt="DotAI" className="footer-logo" />
           <span className="footer-company-name">DotAI</span> |
-          <img src="/whatsapp-logo.png" alt="Whatsapp" className="footer-logo" />
-          <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+          {/* Updated WhatsApp link */}
+          <a href={whatsappLink} target="_blank" rel="noopener noreferrer" className="whatsapp-link">
+            <img src="/whatsapp-icon.png" alt="WhatsApp" className="whatsapp-icon" />
             {t('footer_contact_us')}
           </a>
         </div>
