@@ -1,29 +1,34 @@
 {
+    "version": 2,
     "builds": [
-        {
+      {
         "src": "api/index.py",
         "use": "@vercel/python"
-        },
-        {
+      },
+      {
         "src": "frontend/youtube-ig-webapp/package.json",
         "use": "@vercel/static-build",
         "config": {
-            "distDir": "dist"
+          "distDir": "dist"
         }
-        }
+      }
     ],
     "routes": [
-    {
+      {
         "src": "/api/(.*)",
         "dest": "/api/index.py"
-    },
-    {
+      },
+      {
         "src": "/assets/(.*)",
         "dest": "/frontend/youtube-ig-webapp/assets/$1"
-    },
-    {
-        "src": "/(.*)",
+      },
+      {
+        "src": "/(logo\\.png|whatsapp-icon\\.png|locales/.*|favicon\\.ico|vite\\.svg)", // Add other expected public files if needed
+        "dest": "/frontend/youtube-ig-webapp/$1"
+      },
+      {
+        "src": "/((?!api/).*)",
         "dest": "/frontend/youtube-ig-webapp/index.html"
-    }
+      }
     ]
-}
+  }
