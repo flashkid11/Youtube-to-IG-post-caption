@@ -360,7 +360,7 @@ body {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Keep overflow hidden on card */
 }
 .card:hover {
   transform: translateY(-6px);
@@ -665,9 +665,8 @@ button.copy-button:disabled {
   transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
   cursor: pointer;
   position: relative; /* Keep relative positioning for the number */
-  overflow: hidden;
-  /* --- Ensure height is automatic --- */
-  height: auto;
+  /* Remove overflow: hidden */
+  height: auto; /* Ensure height is automatic */
   display: block; /* Make the option a block container */
 }
 .caption-option:hover {
@@ -681,18 +680,14 @@ button.copy-button:disabled {
 }
 
 .caption-option label {
-  /* --- Make label a block that contains the text flow --- */
-  display: block; /* Change from flex */
-  /* --- Padding now accounts for the absolutely positioned number --- */
-  padding: 25px 25px 25px 70px;
+  /* Make label cover the whole area for clicking, but don't dictate layout */
+  display: block;
+  position: static; /* Let it be part of normal flow */
+  padding: 0; /* Remove padding from label */
   margin-bottom: 0;
   cursor: pointer;
-  font-weight: 400;
-  font-size: 1.05rem;
-  color: var(--text-color);
-  width: 100%;
-  position: relative; /* Keep relative for potential future use, but not strictly needed now */
-  min-height: 70px; /* Ensure a minimum height */
+  /* width: 100%; */ /* Usually not needed for block */
+  min-height: 70px; /* Ensure a minimum clickable area */
   height: auto; /* Explicitly allow auto height */
 }
 
@@ -700,8 +695,8 @@ button.copy-button:disabled {
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0; /* Stretch full height */
-  width: 50px; /* Keep width */
+  bottom: 0; /* Stretch full height of .caption-option */
+  width: 50px;
   display: flex;
   align-items: center; /* Center number vertically */
   justify-content: center;
@@ -711,8 +706,7 @@ button.copy-button:disabled {
   font-size: 1.1rem;
   border-right: 1px solid var(--border-color);
   transition: background-color 0.2s ease, color 0.2s ease;
-  /* --- Add border-radius to match parent --- */
-  border-top-left-radius: calc(var(--border-radius) - 2px); /* Adjust for border */
+  border-top-left-radius: calc(var(--border-radius) - 2px); /* Match parent rounding */
   border-bottom-left-radius: calc(var(--border-radius) - 2px);
 }
 
@@ -731,15 +725,18 @@ button.copy-button:disabled {
 .caption-text { /* This is the <pre> tag */
   white-space: pre-wrap; /* Allow wrapping */
   word-wrap: break-word; /* Break long words */
+  overflow-wrap: break-word; /* Added for better breaking */
   margin: 0; /* Reset default margin */
-  padding: 0; /* Reset padding, parent label handles it now */
+  /* Apply padding HERE, including space for the number block */
+  padding: 25px 25px 25px 70px;
   font-family: inherit;
   font-size: 1.05rem;
   line-height: 1.8;
-  color: inherit;
-  /* --- Remove flex properties, let it behave like normal block inside label --- */
-  display: block;
-  min-height: 0; /* Good practice for flex/block sizing */
+  color: var(--text-color); /* Inherit from parent label is fine too */
+  display: block; /* Ensure it takes block space */
+  min-height: 0;
+  height: auto; /* Let height be determined by content */
+  width: 100%; /* Ensure it takes full width inside label */
 }
 /* --- End Caption Option Responsiveness Styles --- */
 
@@ -838,9 +835,19 @@ button.copy-button:disabled {
   .form-row .form-group { min-width: 100%; margin-bottom: 25px; }
   .error-banner { padding: 15px; font-size: 0.95rem; }
   /* Adjust responsive caption option styles */
-  .caption-option label { padding: 20px 15px 20px 60px; } /* Adjust padding */
-  .caption-variation-number { width: 42px; font-size: 1rem; }
-  .caption-text { font-size: 1rem; }
+  .caption-option label {
+      min-height: 60px; /* Adjust min height if needed */
+  }
+  .caption-variation-number {
+      width: 42px;
+      font-size: 1rem;
+      border-top-left-radius: calc(var(--border-radius) - 4px); /* Adjust responsive rounding */
+      border-bottom-left-radius: calc(var(--border-radius) - 4px);
+   }
+  .caption-text {
+      padding: 20px 15px 20px 60px; /* Adjust padding for smaller screens */
+      font-size: 1rem;
+  }
 }
 
 /* Utility class for screen readers only */
