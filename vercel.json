@@ -23,7 +23,7 @@
         "dest": "/frontend/youtube-ig-webapp/assets/$1"
       },
       {
-        "src": "/(logo\\.png|whatsapp-icon\\.png|locales/.*|favicon\\.ico|vite\\.svg)",
+        "src": "/(logo\\.png|whatsapp-logo\\.png|locales/.*|favicon\\.ico|vite\\.svg)",
         "dest": "/frontend/youtube-ig-webapp/$1"
       },
       {
