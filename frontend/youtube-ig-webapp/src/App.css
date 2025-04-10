@@ -392,6 +392,80 @@ body {
   flex-grow: 1;
 }
 
+/* --- Add near other .card styles --- */
+
+.card-intro {
+  border-top-color: var(--secondary-color); /* Use a neutral color */
+}
+
+.card-intro h2 {
+  border-bottom: none; /* Remove bottom border for intro heading */
+  margin-bottom: 20px; /* Adjust spacing */
+  padding-bottom: 0;
+  font-size: 1.6rem; /* Slightly smaller intro heading */
+}
+
+.card-intro h3 {
+  color: var(--heading-color);
+  margin-top: 30px;
+  margin-bottom: 15px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card-intro p {
+  margin-bottom: 20px;
+  color: var(--muted-text-color);
+}
+
+/* Style the ordered list for usage steps */
+.usage-steps {
+  list-style: none; /* Remove default numbers */
+  padding-left: 0;
+  margin-top: 0;
+  counter-reset: usage-counter; /* Initialize a counter */
+}
+
+.usage-steps li {
+  counter-increment: usage-counter; /* Increment the counter for each li */
+  margin-bottom: 12px;
+  position: relative;
+  padding-left: 35px; /* Make space for the custom number */
+  color: var(--text-color);
+}
+
+.usage-steps li::before {
+  content: counter(usage-counter) "."; /* Display counter value */
+  position: absolute;
+  left: 0;
+  top: 1px; /* Adjust vertical alignment */
+  font-weight: 600;
+  color: var(--primary-color); /* Style the number */
+  width: 25px; /* Ensure consistent spacing */
+  text-align: right; /* Align number to the right */
+  margin-right: 10px;
+}
+
+/* Adjust responsive styles if needed */
+@media (max-width: 600px) {
+  .card-intro h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+  }
+  .card-intro h3 {
+    font-size: 1.1rem;
+    margin-top: 25px;
+    margin-bottom: 10px;
+  }
+   .usage-steps li {
+    padding-left: 30px;
+    margin-bottom: 10px;
+  }
+   .usage-steps li::before {
+    width: 20px;
+  }
+}
+
 /* App Header/Footer */
 .app-header { display: none; }
 .app-footer-placeholder { height: 10px; }
@@ -850,79 +924,6 @@ button.copy-button:disabled {
   }
 }
 
-/* --- Add near other .card styles --- */
-
-.card-intro {
-  border-top-color: var(--secondary-color); /* Use a neutral color */
-}
-
-.card-intro h2 {
-  border-bottom: none; /* Remove bottom border for intro heading */
-  margin-bottom: 20px; /* Adjust spacing */
-  padding-bottom: 0;
-  font-size: 1.6rem; /* Slightly smaller intro heading */
-}
-
-.card-intro h3 {
-  color: var(--heading-color);
-  margin-top: 30px;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
-
-.card-intro p {
-  margin-bottom: 20px;
-  color: var(--muted-text-color);
-}
-
-/* Style the ordered list for usage steps */
-.usage-steps {
-  list-style: none; /* Remove default numbers */
-  padding-left: 0;
-  margin-top: 0;
-  counter-reset: usage-counter; /* Initialize a counter */
-}
-
-.usage-steps li {
-  counter-increment: usage-counter; /* Increment the counter for each li */
-  margin-bottom: 12px;
-  position: relative;
-  padding-left: 35px; /* Make space for the custom number */
-  color: var(--text-color);
-}
-
-.usage-steps li::before {
-  content: counter(usage-counter) "."; /* Display counter value */
-  position: absolute;
-  left: 0;
-  top: 1px; /* Adjust vertical alignment */
-  font-weight: 600;
-  color: var(--primary-color); /* Style the number */
-  width: 25px; /* Ensure consistent spacing */
-  text-align: right; /* Align number to the right */
-  margin-right: 10px;
-}
-
-/* Adjust responsive styles if needed */
-@media (max-width: 600px) {
-  .card-intro h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-  }
-  .card-intro h3 {
-    font-size: 1.1rem;
-    margin-top: 25px;
-    margin-bottom: 10px;
-  }
-   .usage-steps li {
-    padding-left: 30px;
-    margin-bottom: 10px;
-  }
-   .usage-steps li::before {
-    width: 20px;
-  }
-}
 
 /* Utility class for screen readers only */
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0; }
