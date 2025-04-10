@@ -210,9 +210,9 @@ body {
 
 /* Optional: Slightly change text color on hover for better contrast */
 .language-switcher button:hover {
-  color: #2bb1dd; /* Make text slightly darker on hover */
+  color: #1A202C; /* Make text slightly darker on hover */
   background-color: #cbd5e0; /* Keep hover background */
-  box-shadow: 0 1px 3px rgba(21, 171, 221, 0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
 
 
@@ -260,18 +260,39 @@ body {
   font-weight: 500;
 }
 
-.site-footer a {
+.site-footer a { /* Default anchor styles in footer */
+  color: var(--secondary-color); /* Adjust if needed */
+  text-decoration: none;
+}
+
+/* --- ADD THESE styles for the WhatsApp Link & Icon --- */
+.site-footer a.whatsapp-link {
+  /* Use inline-flex to easily align icon and text */
+  display: inline-flex;
+  align-items: center; /* Vertically center icon and text */
+  gap: 5px; /* Add a small space between icon and text */
+
+  /* Specific link styles for WhatsApp */
   color: var(--primary-color);
   text-decoration: none;
   font-weight: 500;
   transition: color 0.2s ease, transform 0.2s ease;
-  display: inline-block;
 }
 
-.site-footer a:hover {
+.site-footer a.whatsapp-link:hover {
+  /* Specific hover styles for WhatsApp */
   color: var(--primary-hover);
   transform: translateY(-1px);
 }
+
+.whatsapp-icon {
+  height: 1em; /* Size the icon relative to the link's font size */
+  width: auto; /* Maintain aspect ratio */
+  /* vertical-align: middle; Usually not needed with inline-flex */
+  margin-bottom: -1px; /* Optional: fine-tune vertical alignment if needed */
+}
+/* --- End WhatsApp Link Styles --- */
+
 
 /* --- Enhanced Loading Indicator --- */
 .loading-indicator {
@@ -644,6 +665,8 @@ button.copy-button:disabled {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  /* --- ADD: Let height be determined by content --- */
+  height: auto;
 }
 .caption-option:hover {
   border-color: var(--primary-color);
@@ -656,8 +679,10 @@ button.copy-button:disabled {
 }
 .caption-option label {
   display: flex;
-  align-items: flex-start;
-  padding: 25px 25px 25px 70px; /* More padding for number */
+  /* --- CHANGED: align-items to stretch for full height --- */
+  align-items: stretch; /* Make children stretch vertically */
+  padding: 0; /* Remove padding from label, apply to children */
+  /* padding: 25px 25px 25px 70px; */ /* Original padding */
   margin-bottom: 0;
   cursor: pointer;
   font-weight: 400;
@@ -665,15 +690,16 @@ button.copy-button:disabled {
   color: var(--text-color);
   width: 100%;
   position: relative;
+  min-height: 70px; /* Ensure a minimum height even for short text */
 }
 .caption-variation-number {
-  position: absolute;
+  position: absolute; /* Keep absolute positioning relative to label */
   left: 0;
   top: 0;
-  bottom: 0;
+  bottom: 0; /* Stretch full height */
   width: 50px;
   display: flex;
-  align-items: center;
+  align-items: center; /* Center number vertically */
   justify-content: center;
   background-color: rgba(74, 85, 104, 0.3);
   color: var(--primary-color);
@@ -695,15 +721,19 @@ button.copy-button:disabled {
 
 /* Removed .caption-text-wrapper, apply padding to pre */
 .caption-text { /* This is the <pre> tag */
-  white-space: pre-wrap;
-  word-wrap: break-word;
+  white-space: pre-wrap; /* Allow wrapping */
+  word-wrap: break-word; /* Break long words */
   margin: 0;
-  padding: 0; /* Remove default pre padding */
+  /* --- ADD: Padding inside the <pre> --- */
+  padding: 25px 25px 25px 70px; /* Re-apply padding here (left padding accounts for number) */
   font-family: inherit;
   font-size: 1.05rem;
   line-height: 1.8;
   color: inherit;
   flex-grow: 1; /* Allow pre to take space */
+  /* --- ADD: Ensure block display and min-height if needed --- */
+  display: block;
+  min-height: 1em; /* Ensure it has some height even if empty */
 }
 
 /* --- Loading Overlay --- */
@@ -799,9 +829,9 @@ button.copy-button:disabled {
   .form-row { flex-direction: column; gap: 0; }
   .form-row .form-group { min-width: 100%; margin-bottom: 25px; }
   .error-banner { padding: 15px; font-size: 0.95rem; }
-  .caption-option label { padding: 20px 15px 20px 60px; }
+  .caption-option label { padding: 0; } /* Remove padding from label */
   .caption-variation-number { width: 42px; font-size: 1rem; }
-  .caption-text { font-size: 1rem; }
+  .caption-text { padding: 20px 15px 20px 60px; font-size: 1rem; } /* Adjust padding */
 }
 
 /* Utility class for screen readers only */
