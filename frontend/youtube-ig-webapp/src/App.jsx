@@ -5,8 +5,9 @@ import './App.css';
 
 // --- API Base URL ---
 // Keep the one appropriate for your current testing environment
-const API_BASE_URL = 'http://localhost:5000/api'; // Local example
-// const API_BASE_URL = '/api'; // Production example
+// const API_BASE_URL = 'http://localhost:5000/api'; // Local example
+// const API_BASE_URL = 'http://localhost:5000'; // Local example
+const API_BASE_URL = '/api'; // Production example
 
 function Spinner() {
   return <div className="spinner"></div>;
@@ -403,10 +404,10 @@ function App() {
             </div>
             <div className="download-buttons-container">
               <button onClick={handleDownloadTxt} disabled={isLoading} className="download-button txt-button">
-                <span role="img" aria-hidden="true">💾</span> {t('download_txt_button')}
+                <span role="img" aria-hidden="true"></span> {t('download_txt_button')}
               </button>
               <button onClick={handleDownloadSrt} disabled={isLoading} className="download-button srt-button">
-                <span role="img" aria-hidden="true">🎬</span> {t('download_srt_button')}
+                <span role="img" aria-hidden="true"></span> {t('download_srt_button')}
               </button>
             </div>
           </div>
@@ -415,7 +416,7 @@ function App() {
         {/* --- Prompt Engineering Showcase --- */}
          {transcriptData && !isLoading && (
             <div className="card prompt-elements-card">
-                <h2><span role="img" aria-hidden="true">💡</span> {t('caption_factors_heading')}</h2>
+                <h2><span role="img" aria-hidden="true"></span> {t('caption_factors_heading')}</h2>
                 <p>{t('caption_factors_intro')}</p>
                 <ul>
                     {/* Note: We use apiLanguage state for the value sent to backend */}
@@ -534,7 +535,7 @@ function App() {
                   title={t('copy_button_title')}
                   aria-label={t('copy_button_title')}
                 >
-                  <span role="img" aria-hidden="true">📋</span> {t('copy_button')}
+                  <span role="img" aria-hidden="true"></span> {t('copy_button')}
                 </button>
                 {copySuccess && <span className="copy-feedback" role="status">{t('copy_success_message')}</span>}
               </div>
@@ -551,6 +552,7 @@ function App() {
         <div className="footer-content">
           <img src="/logo.png" alt="DotAI" className="footer-logo" />
           <span className="footer-company-name">DotAI</span> |
+          <img src="/whatsapp-logo.png" alt="Whatsapp" className="footer-logo" />
           <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
             {t('footer_contact_us')}
           </a>

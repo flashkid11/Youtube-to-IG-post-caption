@@ -176,6 +176,7 @@ body {
   padding: 0.3rem 0.7rem; /* Reduced padding */
   font-size: 0.85rem;     /* Reduced font size */
   /* --------------------- */
+  min-width: 100px;
   border-radius: 6px;
   cursor: pointer;
   font-weight: 500;
@@ -209,9 +210,9 @@ body {
 
 /* Optional: Slightly change text color on hover for better contrast */
 .language-switcher button:hover {
-  color: #1A202C; /* Make text slightly darker on hover */
+  color: #2bb1dd; /* Make text slightly darker on hover */
   background-color: #cbd5e0; /* Keep hover background */
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(21, 171, 221, 0.1);
 }
 
 
@@ -466,8 +467,8 @@ button {
   align-items: center;
   justify-content: center;
   gap: 14px;
-  background-color: var(--primary-color);
-  color: #1a2035;
+  background-color: #2bb1dd;
+  /* color: #1a2e35; */
   padding: 18px 40px;
   border: none;
   border-radius: var(--border-radius);
@@ -478,7 +479,8 @@ button {
   letter-spacing: 0.9px;
   transition: all 0.25s ease;
   min-width: 250px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+  /* min-height: 30px; */
+  box-shadow: 0 6px 18px rgba(202, 224, 223, 0.2);
 }
 button:hover:not(:disabled) { background-color: var(--primary-hover); transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 20px rgba(79, 209, 197, 0.25); }
 button:active:not(:disabled) { transform: translateY(-1px) scale(0.99); }
@@ -491,7 +493,10 @@ button .spinner { border: 3px solid rgba(26, 32, 53, 0.4); border-top-color: #1a
   gap: 18px; /* Increased gap */
   flex-wrap: wrap;
   margin-top: 25px; /* Add some top margin */
-  justify-content: flex-end; /* Align to the right */
+  justify-content: center; /* Align to the right */
+  align-items: center;
+  text-align: center;
+  vertical-align: middle;
 }
 .download-button {
   background-color: var(--secondary-color);
@@ -505,22 +510,30 @@ button .spinner { border: 3px solid rgba(26, 32, 53, 0.4); border-top-color: #1a
   box-shadow: 0 3px 6px rgba(0,0,0,0.1);
   border-radius: 8px;
   border: none; /* Ensure no default button border */
+  text-align: center;
+  vertical-align: middle;
 }
 .download-button:hover:not(:disabled) {
   background-color: #718096;
   transform: translateY(-2px); /* Slightly more lift */
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+  text-align: center;
+  vertical-align: middle;
 }
 .download-button span[role="img"] {
   font-size: 1.2em;
   margin-right: 8px;
+  text-align: center;
+  vertical-align: middle;
 }
 .txt-button {
   background-color: #63b3ed; /* Blue */
   color: #1a2035;
+  text-align: center;
 }
 .txt-button:hover:not(:disabled) {
   background-color: #4299e1;
+  text-align: center;
 }
 .srt-button {
   background-color: #f6e05e; /* Yellow */
