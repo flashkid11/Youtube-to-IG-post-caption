@@ -118,12 +118,12 @@ def generate_transcript(youtube_url, request_id):
     print(f"Starting transcript generation for: {youtube_url} (ID: {request_id})")
     client = genai.Client(api_key=GEMINI_API_KEY)
 
+    # 1. Language: Cantonese or English (prioritize accuracy in spoken language).
     prompt = """
     Analyze the following YouTube video and generate accurate timestamps with corresponding subtitles.
     Requirements:
-    1. Language: Cantonese or English (prioritize accuracy in spoken language).
-    2. Provide timestamps in the format HH:MM:SS.mmm (e.g., 00:00:05.123) and the spoken text at each timestamp.
-    3. Return the result STRICTLY as a JSON array of objects with 'timestamp' and 'subtitle' fields. Do not include ```json markdown or any other text outside the JSON array.
+    1. Provide timestamps in the format HH:MM:SS.mmm (e.g., 00:00:05.123) and the spoken text at each timestamp.
+    2. Return the result STRICTLY as a JSON array of objects with 'timestamp' and 'subtitle' fields. Do not include ```json markdown or any other text outside the JSON array.
     
     **Example Output:**
     [
@@ -141,12 +141,14 @@ def generate_transcript(youtube_url, request_id):
 
     try:
         response = client.models.generate_content(
-            model='models/gemini-2.5-pro-exp-03-25',
+            # model='models/gemini-2.5-pro-exp-03-25',
+            model='models/gemini-2.0-flash',
+            # model='gemini-2.5-pro-exp-03-25',
             contents=content,
             config=types.GenerateContentConfig(
                 response_mime_type='application/json',
                 response_schema=list[Transcript],
-                temperature=1.0,
+                temperature=0.0,
             )
         )
         response_text = response.text.strip()  # Strip whitespace
@@ -231,7 +233,8 @@ def generate_multiple_captions(transcript_data, style, language, num_captions=3,
     )
     try:
         response = client.models.generate_content(
-            model='models/gemini-2.5-pro-exp-03-25',  # Adjusted to a valid model name
+            # model='models/gemini-2.5-pro-exp-03-25',  # Adjusted to a valid model name
+            model='models/gemini-2.0-flash',
             contents=prompt,
             config=generation_config
         )        # Clean up the response text (remove potential leading/trailing whitespace)
@@ -297,6 +300,7 @@ def home_test():
 
 
 @app.route('/api/generate_transcript', methods=['POST'])
+# @app.route('/generate_transcript', methods=['POST'])
 def generate_transcript_route():
     """Endpoint for transcript generation with SRT download."""
     if not request.is_json:
@@ -340,6 +344,7 @@ def generate_transcript_route():
 
 
 @app.route('/api/generate_caption', methods=['POST'])
+# @app.route('/generate_caption', methods=['POST'])
 def generate_caption_route():
     """ Endpoint for generating multiple captions. """
     if not request.is_json: return jsonify({'error': 'Request must be JSON'}), 415
@@ -386,3 +391,4 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     print(f"--- Starting Flask server on http://{host}:{port} ---")
     app.run(debug=True, host=host, port=port)
+    
