@@ -6,19 +6,22 @@
 
   <!-- Links / Badges -->
   <p>
-    <a href="[YOUR_VERCEL_DEPLOYMENT_URL_HERE]"><img src="https://img.shields.io/badge/Live_Demo-Visit-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo"></a>
-    <a href="https://github.com/flashkid11/Youtube-to-IG-post-caption/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License"></a> <!-- Add a license! -->
-     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python" alt="Python Version"></a>
-  </p>
-
-  <!-- Optional: Tech Icons with Links -->
-  <p>
-     Built with:
-     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_YOUTUBE_ICON.png/svg]" width="25" alt="YouTube"></a> 
-     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_INSTAGRAM_ICON.png/svg]" width="25" alt="Instagram"></a> 
-     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_OPENAI_ICON.png/svg]" width="25" alt="OpenAI"></a> 
-     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_FLASK_ICON.png/svg]" width="25" alt="Flask"></a> 
-     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_VERCEL_ICON.png/svg]" width="25" alt="Vercel"></a>
+    Built with:
+     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" width="25" alt="YouTube Logo">
+     </a> 
+     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" width="25" alt="Instagram Logo">
+     </a> 
+     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" title="OpenAI">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" width="25" alt="OpenAI Logo">
+     </a> 
+     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer" title="Flask">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/flask.svg" width="25" alt="Flask Logo">
+     </a> 
+     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" title="Vercel">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vercel.svg" width="25" alt="Vercel Logo">
+     </a>
   </p>
 
 </div>
@@ -164,20 +167,22 @@ curl -X POST -H "Content-Type: application/json" \
 
   <!-- Links / Badges -->
   <p>
-    <a href="[YOUR_VERCEL_DEPLOYMENT_URL_HERE]"><img src="https://img.shields.io/badge/Live_Demo-Visit-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo"></a>
-    <a href="https://github.com/flashkid11/Youtube-to-IG-post-caption/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License"></a> <!-- Add a license! -->
-     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python" alt="Python Version"></a>
-  </p>
-
-  <!-- Optional: Tech Icons with Links -->
-  <p>
-     Built with:
-     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_YOUTUBE_ICON.png/svg]" width="25" alt="YouTube"></a> 
-     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_INSTAGRAM_ICON.png/svg]" width="25" alt="Instagram"></a> 
-     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_OPENAI_ICON.png/svg]" width="25" alt="OpenAI"></a> 
-     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_FLASK_ICON.png/svg]" width="25" alt="Flask"></a> 
-     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_VERCEL_ICON.png/svg]" width="25" alt="Vercel"></a>
-  </p>
+    Built with:
+     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" title="YouTube">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/youtube.svg" width="25" alt="YouTube Logo">
+     </a> 
+     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Instagram">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg" width="25" alt="Instagram Logo">
+     </a> 
+     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer" title="OpenAI">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" width="25" alt="OpenAI Logo">
+     </a> 
+     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer" title="Flask">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/flask.svg" width="25" alt="Flask Logo">
+     </a> 
+     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer" title="Vercel">
+       <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/vercel.svg" width="25" alt="Vercel Logo">
+     </a>
 
 </div>
 
