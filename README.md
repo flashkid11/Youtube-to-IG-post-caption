@@ -1,16 +1,41 @@
-</p>
-<p align="center">
-  Generate Instagram Captions from YouTube Videos using AI
-</p>
+<div align="center">
+
+  <!-- Main Title -->
+  <h1>🎬 YouTube to IG Caption Generator 📝</h1>
+  <p><em>Automatically create Instagram captions from YouTube videos using AI ✨</em></p>
+
+  <!-- Links / Badges -->
+  <p>
+    <a href="[YOUR_VERCEL_DEPLOYMENT_URL_HERE]"><img src="https://img.shields.io/badge/Live_Demo-Visit-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo"></a>
+    <a href="https://github.com/flashkid11/Youtube-to-IG-post-caption/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License"></a> <!-- Add a license! -->
+     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python" alt="Python Version"></a>
+  </p>
+
+  <!-- Optional: Tech Icons with Links -->
+  <p>
+     Built with:
+     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_YOUTUBE_ICON.png/svg]" width="25" alt="YouTube"></a> 
+     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_INSTAGRAM_ICON.png/svg]" width="25" alt="Instagram"></a> 
+     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_OPENAI_ICON.png/svg]" width="25" alt="OpenAI"></a> 
+     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_FLASK_ICON.png/svg]" width="25" alt="Flask"></a> 
+     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_VERCEL_ICON.png/svg]" width="25" alt="Vercel"></a>
+  </p>
+
+</div>
+
+--- <!-- Horizontal Rule to separate banner from main content -->
+
+## Overview
+<!-- Rest of your README content -->
 
 ---
 
 [![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)]([YOUR_VERCEL_DEPLOYMENT_URL_HERE]) <!-- Replace placeholder -->
+[![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)]([https://dot-ai-youtube-to-ig-post.vercel.app/]) <!-- Replace placeholder -->
 
 A Flask web application that automatically generates Instagram post captions based on the content (transcript, title, description) of a YouTube video using the OpenAI API.
 
-**🚀 Live Demo:** [**[YOUR_VERCEL_DEPLOYMENT_URL_HERE]**]([YOUR_VERCEL_DEPLOYMENT_URL_HERE]) <!-- Replace placeholder -->
+**🚀 Live Demo:** [**[https://dot-ai-youtube-to-ig-post.vercel.app/]**]
 
 ## Overview
 
@@ -126,26 +151,49 @@ Send POST requests to the `/generate_caption` endpoint on your Vercel deployment
 ```bash
 curl -X POST -H "Content-Type: application/json" \
      -d '{"youtube_url": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"}' \
-     [YOUR_VERCEL_DEPLOYMENT_URL_HERE]/generate_caption # Replace placeholder
+     [https://dot-ai-youtube-to-ig-post.vercel.app/]/generate_caption # Replace placeholder
 ```
 
 
 
+<div align="center">
 
+  <!-- Main Title -->
+  <h1>🎬 YouTube to IG Caption Generator 📝</h1>
+  <p><em>透過 AI 從 YouTube 影片產生 Instagram 貼文內容 ✨</em></p>
 
-</p>
-<p align="center">
-  透過 AI 從 YouTube 影片產生 Instagram 貼文標題
-</p>
+  <!-- Links / Badges -->
+  <p>
+    <a href="[YOUR_VERCEL_DEPLOYMENT_URL_HERE]"><img src="https://img.shields.io/badge/Live_Demo-Visit-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo"></a>
+    <a href="https://github.com/flashkid11/Youtube-to-IG-post-caption/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge" alt="License"></a> <!-- Add a license! -->
+     <a href="https://www.python.org/"><img src="https://img.shields.io/badge/Python-3.11+-blue?style=for-the-badge&logo=python" alt="Python Version"></a>
+  </p>
+
+  <!-- Optional: Tech Icons with Links -->
+  <p>
+     Built with:
+     <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_YOUTUBE_ICON.png/svg]" width="25" alt="YouTube"></a> 
+     <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_INSTAGRAM_ICON.png/svg]" width="25" alt="Instagram"></a> 
+     <a href="https://openai.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_OPENAI_ICON.png/svg]" width="25" alt="OpenAI"></a> 
+     <a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_FLASK_ICON.png/svg]" width="25" alt="Flask"></a> 
+     <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer"><img src="[URL_TO_YOUR_VERCEL_ICON.png/svg]" width="25" alt="Vercel"></a>
+  </p>
+
+</div>
+
+--- <!-- Horizontal Rule to separate banner from main content -->
+
+## Overview
+<!-- Rest of your README content -->
 
 ---
 
 [![Python Version](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)]([YOUR_VERCEL_DEPLOYMENT_URL_HERE]) <!-- 替換佔位符 -->
+[![Deployed on Vercel](https://img.shields.io/badge/deployed%20on-Vercel-black?style=flat&logo=vercel)]([https://dot-ai-youtube-to-ig-post.vercel.app/]) <!-- 替換佔位符 -->
 
 一個 Flask 網路應用程式，使用 OpenAI API，根據 YouTube 影片的內容（字幕、標題、描述）自動產生 Instagram 貼文標題。
 
-**🚀 線上演示 (Live Demo):** [**[YOUR_VERCEL_DEPLOYMENT_URL_HERE]**]([YOUR_VERCEL_DEPLOYMENT_URL_HERE]) <!-- 替換佔位符 -->
+**🚀 線上演示 (Live Demo):** [**[https://dot-ai-youtube-to-ig-post.vercel.app/]**]
 
 ## 概述
 
@@ -261,4 +309,4 @@ curl -X POST -H "Content-Type: application/json" \
 ```bash
 curl -X POST -H "Content-Type: application/json" \
      -d '{"youtube_url": "https://www.youtube.com/watch?v=YOUR_VIDEO_ID"}' \
-     [YOUR_VERCEL_DEPLOYMENT_URL_HERE]/generate_caption # 替換佔位符
+     [https://dot-ai-youtube-to-ig-post.vercel.app/]/generate_caption # 替換佔位符
