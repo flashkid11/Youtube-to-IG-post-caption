@@ -38,44 +38,46 @@
 
 A Flask web application that automatically generates Instagram post captions based on the content (transcript, title, description) of a YouTube video using the OpenAI API.
 
-**🚀 Live Demo:** [**[https://dot-ai-youtube-to-ig-post.vercel.app/]**]
+**🚀 Live Demo:** **[https://dot-ai-youtube-to-ig-post.vercel.app/]**
 
 ## Overview
 
-This tool simplifies creating social media content by leveraging AI. Provide a YouTube video URL, and it will:
+This Flask web application leverages the power of **Google Gemini** to automatically process YouTube videos. It provides two main functionalities:
 
-1.  Fetch the video's transcript using `youtube-transcript-api`.
-2.  Retrieve the video's title and description via the YouTube Data API v3.
-3.  Send the collected text data to OpenAI's Chat Completion endpoint (GPT).
-4.  Return a generated Instagram-style caption summarizing the video content.
+1.  **Transcript Generation:** Takes a YouTube video URL and uses Gemini's multimodal capabilities to generate an accurate transcript with timestamps. The transcript can be returned as structured JSON or downloaded as a standard `.srt` subtitle file.
+2.  **Instagram Caption Generation:** Takes the generated transcript data, a desired style (e.g., "Casual", "Formal"), language (English/Cantonese), and number of variations, then uses Gemini to craft multiple engaging Instagram caption options.
+
+This tool streamlines content creation by turning video content into usable text formats for subtitles and social media.
 
 ## Features
 
-*   Simple API endpoint (`/generate_caption`) accepts YouTube URLs.
-*   Utilizes video transcripts for accurate content analysis.
-*   Incorporates video title and description for context.
-*   Leverages OpenAI (GPT models) for natural language caption generation.
-*   Built with Python and Flask.
-*   Ready for deployment on platforms like Vercel.
+*   **Gemini-Powered Transcription:** Utilizes Google Gemini (Flash/Pro models) for generating transcripts with timestamps directly from YouTube video URLs.
+*   **Multiple Output Formats:**
+    *   Get transcripts as structured JSON.
+    *   Download transcripts as `.srt` files suitable for video players.
+*   **Multi-Caption Generation:** Generate 1-5 distinct Instagram caption variations based on the transcript.
+*   **Customizable Captions:** Specify caption style (e.g., "Funny", "Informative") and language ("English" or "Cantonese").
+*   **Robust Parsing:** Includes logic to handle potential variations in Gemini's JSON output format.
+*   **Simple API:** Clear endpoints (`/api/generate_transcript`, `/api/generate_caption`) for integration.
+*   **Deployable:** Ready for deployment on platforms like Vercel (includes extensive logging for debugging).
 
 ## Technology Stack
 
 *   **Backend:** Python 3.11+
 *   **Framework:** Flask
-*   **API Clients:**
-    *   OpenAI API (`openai`)
-    *   Google API Python Client (`google-api-python-client`) for YouTube Data API v3
-    *   YouTube Transcript API (`youtube-transcript-api`)
-*   **WSGI Server:** Gunicorn (used by Vercel implicitly or via `Procfile`)
+*   **AI Engine:** Google Gemini (`google-generativeai`)
+*   **Deployment:** Vercel / Gunicorn
+
+**(Note:** Previous dependencies like `openai` and `youtube-transcript-api` are no longer used.)
 
 ## Prerequisites
 
 *   **Python:** Version 3.11 or higher.
 *   **pip:** Python package installer.
 *   **Git:** For cloning the repository.
-*   **API Keys:**
-    *   **OpenAI API Key:** You need an API key from [OpenAI](https://platform.openai.com/account/api-keys).
-    *   **YouTube Data API v3 Key:** You need an API key from the [Google Cloud Console](https://console.cloud.google.com/apis/library/youtube.googleapis.com). Ensure the YouTube Data API v3 is enabled for your project.
+*   **API Key:**
+    *   **Google Gemini API Key:** You need an API key enabled for the Gemini API. Obtain this from [Google AI Studio](https://aistudio.google.com/app/apikey) or your Google Cloud Console project.
+    *   **(Note:** A YouTube Data API key is **no longer required** by this script.)
 
 ## Installation (Local Development)
 
@@ -97,6 +99,7 @@ This tool simplifies creating social media content by leveraging AI. Provide a Y
     ```
 
 3.  **Install dependencies:**
+    *(Ensure your `requirements.txt` file reflects the new script's imports: `Flask`, `Flask-Cors`, `python-dotenv`, `google-generativeai`, `gunicorn`)*
     ```bash
     pip install -r requirements.txt
     ```
@@ -104,15 +107,12 @@ This tool simplifies creating social media content by leveraging AI. Provide a Y
 ## Configuration
 
 1.  Create a file named `.env` in the root directory of the project (for local development).
-2.  Add your API keys to the `.env` file:
+2.  Add your Gemini API key to the `.env` file:
     ```dotenv
-    OPENAI_API_KEY=your_openai_api_key_here
-    YOUTUBE_API_KEY=your_youtube_data_api_key_here
+    GEMINI_API_KEY=your_gemini_api_key_here
     ```
-    Replace `your_openai_api_key_here` and `your_youtube_data_api_key_here` with your actual keys. The application uses `python-dotenv` to load these variables automatically during local development.
-    **Note:** For deployment (e.g., Vercel), set these as Environment Variables in the platform's settings.
-
-## Usage
+    Replace `your_gemini_api_key_here` with your actual key.
+    **Note:** For deployment (e.g., Vercel), set `GEMINI_API_KEY` as an Environment Variable in the platform's settings.
 
 ### Running Locally
 
@@ -198,35 +198,35 @@ curl -X POST -H "Content-Type: application/json" \
 
 一個 Flask 網路應用程式，使用 OpenAI API，根據 YouTube 影片的內容（字幕、標題、描述）自動產生 Instagram 貼文標題。
 
-**🚀 線上演示 (Live Demo):** [**[https://dot-ai-youtube-to-ig-post.vercel.app/]**]
+**🚀 線上演示 (Live Demo):** **[https://dot-ai-youtube-to-ig-post.vercel.app/]**
 
 ## 概述
 
-這個工具利用 AI 簡化了社交媒體內容的創作。提供一個 YouTube 影片 URL，它將會：
+這個 Flask 網路應用程式利用 Google Gemini 的強大功能來自動處理 YouTube 影片。它提供兩個主要功能：
 
-1.  使用 `youtube-transcript-api` 取得影片的字幕。
-2.  透過 YouTube Data API v3 取得影片的標題和描述。
-3.  將收集到的文字資料傳送至 OpenAI 的 Chat Completion 端點 (GPT)。
-4.  回傳一個生成的、總結影片內容的 Instagram 風格標題。
+1.  字幕稿生成： 輸入 YouTube 影片 URL，使用 Gemini 的多模態能力產生帶有時間戳記的準確字幕稿。字幕稿可以以結構化的 JSON 格式回傳，或下載為標準的 .srt 字幕檔。
+2.  Instagram 標題生成： 輸入先前產生的字幕稿資料、期望的風格（例如「休閒」、「正式」）、語言（英文/粵語）以及數量，然後使用 Gemini 來產生多個引人入勝的 Instagram 貼文標題選項。
+
+此工具將影片內容轉換為可用於字幕和社交媒體的文字格式，從而簡化內容創作流程。
 
 ## 功能特色
 
-*   簡單的 API 端點 (`/generate_caption`) 接受 YouTube URL。
-*   利用影片字幕進行準確的內容分析。
-*   結合影片標題和描述以提供上下文。
-*   利用 OpenAI (GPT 模型) 進行自然語言標題生成。
-*   使用 Python 和 Flask 建構。
-*   已準備好在 Vercel 等平台上部署。
+*   Gemini 驅動的字幕生成： 利用 Google Gemini (Flash/Pro 模型) 直接從 YouTube 影片 URL 產生帶時間戳記的字幕稿。
+*   多種輸出格式：
+  *  以結構化 JSON 格式取得字幕稿。
+  *   下載適用於影片播放器的 .srt 格式字幕稿。
+*   多標題生成： 根據字幕稿生成 1-5 個不同的 Instagram 標題變體。
+*   可自訂標題： 指定標題風格（例如「有趣」、「資訊性」）和語言（「English」或「Cantonese」）。
+*   穩健的解析： 包含處理 Gemini JSON 輸出格式潛在變化的邏輯。
+*   簡單 API： 清晰的端點 (/api/generate_transcript, /api/generate_caption) 便於整合。
+*   可部署： 已準備好部署到 Vercel 等平台（包含詳細的日誌記錄以便除錯）。
 
 ## 技術堆疊
 
-*   **後端 (Backend):** Python 3.11+
+*   **後端 (Backend): Python 3.11+
 *   **框架 (Framework):** Flask
-*   **API 客戶端 (API Clients):**
-    *   OpenAI API (`openai`)
-    *   Google API Python Client (`google-api-python-client`) 用於 YouTube Data API v3
-    *   YouTube Transcript API (`youtube-transcript-api`)
-*   **WSGI 伺服器 (WSGI Server):** Gunicorn (Vercel 會隱式使用或透過 `Procfile` 使用)
+*   **AI 引擎 (AI Engine): Google Gemini (google-generativeai)
+*   **部署 (Deployment): Vercel / Gunicorn
 
 ## 先決條件
 
@@ -234,8 +234,8 @@ curl -X POST -H "Content-Type: application/json" \
 *   **pip:** Python 套件安裝程式。
 *   **Git:** 用於複製儲存庫。
 *   **API 金鑰 (API Keys):**
-    *   **OpenAI API Key:** 您需要從 [OpenAI](https://platform.openai.com/account/api-keys) 獲取 API 金鑰。
-    *   **YouTube Data API v3 Key:** 您需要從 [Google Cloud Console](https://console.cloud.google.com/apis/library/youtube.googleapis.com) 獲取 API 金鑰。請確保您的專案已啟用 YouTube Data API v3。
+    *   Google Gemini API Key: 您需要一個已啟用 Gemini API 的 API 金鑰。可以從 Google AI Studio 或您的 Google Cloud Console 專案取得。
+    *   **(注意： 此腳本不再需要 YouTube Data API 金鑰。)
 
 ## 安裝 (本地開發)
 
@@ -264,12 +264,11 @@ curl -X POST -H "Content-Type: application/json" \
 ## 設定 (Configuration)
 
 1.  在專案根目錄下建立一個名為 `.env` 的檔案（用於本地開發）。
-2.  將您的 API 金鑰加入 `.env` 檔案中：
+2.  將您的 Gemini API 金鑰加入 .env 檔案中：
     ```dotenv
-    OPENAI_API_KEY=your_openai_api_key_here
-    YOUTUBE_API_KEY=your_youtube_data_api_key_here
+    GEMINI_API_KEY=your_gemini_api_key_here
     ```
-    將 `your_openai_api_key_here` 和 `your_youtube_data_api_key_here` 替換成您實際的金鑰。在本地開發時，應用程式會使用 `python-dotenv` 自動載入這些變數。
+    將 `your_gemini_api_key_here` 替換成您實際的金鑰。
     **注意：** 對於部署（例如 Vercel），請在平台的設定中將這些設定為環境變數 (Environment Variables)。
 
 ## 使用方式
